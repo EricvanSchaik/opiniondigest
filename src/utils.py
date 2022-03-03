@@ -70,7 +70,7 @@ class Config:
             else:
                 agg_name = "_{}".format(self.conf_name.replace('-', '_'))
         else:
-            agg_name = "_{}_{}_{}_{}_{}".format(self.config["num_review"],
+            agg_name = "_{}_{}_{}_{}_{}_{}".format(self.config["num_review"],
                                                 self.config["top_k"],
                                                 "all",
                                                 self.config["sentiment"],

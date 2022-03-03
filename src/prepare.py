@@ -70,9 +70,9 @@ class Prepare:
 
         # Write to csv files
         print("*****Write files into train/dev/test*****")
-        wr_train = csv.writer(open(os.path.join(self.target_path, "train.csv"), "w", encoding="utf-8"))
-        wr_dev = csv.writer(open(os.path.join(self.target_path, "dev.csv"), "w", encoding="utf-8"))
-        wr_test = csv.writer(open(os.path.join(self.target_path, "test.csv"), "w", encoding="utf-8"))
+        wr_train = csv.writer(open(os.path.join(self.target_path, "train.csv"), "w", encoding="utf-8", newline=""))
+        wr_dev = csv.writer(open(os.path.join(self.target_path, "dev.csv"), "w", encoding="utf-8", newline=""))
+        wr_test = csv.writer(open(os.path.join(self.target_path, "test.csv"), "w", encoding="utf-8", newline=""))
 
         # Write header
         wr_train.writerow(["eid", "rid", "review", "extraction", "input_text"])

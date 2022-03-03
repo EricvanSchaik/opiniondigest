@@ -243,7 +243,7 @@ class Input:
                 pbar.update(1)
         return list(entities.values())
 
-    def select(self, n, k, att, pol, is_exact, emb_dim, gold_summary):
+    def select(self, n, k, att, pol, is_exact, emb_dim, gold_file):
         """ Select entities/reviews/extractions according to selection rule;
 		write selected entities/reviews/extraction into file.
 		Args:
@@ -252,7 +252,10 @@ class Input:
 			att (str): extraction selection rule -- attribute of the summary
 			pol (str): extraction selection rule -- sentiment of the summary
 		"""
-        gold = None if len(gold_summary) == 0 else self._read_gold(gold_summary)
+        try:
+            gold = self._read_gold(gold_file)
+        except FileNotFoundError:
+            gold = None
         selected = []
         for entity in self.entities:
             if is_exact and entity.get_size() < n:
@@ -284,7 +287,7 @@ class Input:
     def _write_file(self, n, k, att, pol, selected, emb_dim, gold):
         """ Write selected entities/reviews/extractions into file. """
         target_file = self._get_target_name(n, k, att, pol, emb_dim)
-        writer = csv.writer(open(os.path.join(target_file), "w"))
+        writer = csv.writer(open(os.path.join(target_file), "w", encoding="utf-8", newline=""))
         header = ["eid", "rids", "n"]
         header = header + ["gold_summary"] if gold is not None else header
         header += ["review_{}".format(i) for i in range(n)]

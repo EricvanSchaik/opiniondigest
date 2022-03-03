@@ -112,8 +112,8 @@ if __name__ == "__main__":
     test_filepath = os.path.join(data_dirpath,
                                  "test.csv")
     agg_test_filepath = os.path.join(data_dirpath,
-                                     "test{}.csv".format(a_conf.get_agg_name()))
-    
+                                     "aggregate{}.csv".format(a_conf.get_agg_name()))
+
     assert os.path.exists(train_filepath)
     assert os.path.exists(valid_filepath)
     assert os.path.exists(test_filepath)
